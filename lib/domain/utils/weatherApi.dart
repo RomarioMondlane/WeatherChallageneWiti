@@ -1,6 +1,7 @@
 import 'package:http/http.dart';
 import 'package:weather/data/models/city.dart';
 import 'package:weather/data/models/main.dart';
+import 'package:weather/data/models/next_five_days.dart';
 import 'package:weather/data/models/response.dart';
 import 'package:weather/data/models/weather.dart';
 import 'package:weather/data/models/wind.dart';
@@ -20,8 +21,7 @@ class WeatherApi {
     await Future.wait(new Cities().getCities().map((city) => http
             .get(Uri.parse(httpClinte +
                 'lat=${city.lat}&lon=${city.long}&appid=${consts.apiKey()}'))
-            .then((value) => citiesWeather.add(deserializeJson(value)))))
-        .timeout((const Duration(seconds: 10)));
+            .then((value) => citiesWeather.add(deserializeJson(value)))));
     return citiesWeather;
   }
 
@@ -33,7 +33,13 @@ class WeatherApi {
     return await http
         .get(Uri.parse(
             httpClinte + 'lat=${lat}&lon=${long}&appid=${consts.apiKey()}'))
-        .timeout(const Duration(seconds: 6))
         .then((value) => deserializeJson(value));
+  }
+  Future<List<NextFiveDaysWeather>> getNextFiveDaysWeather(double long,double lat) async {
+
+    return await http
+        .get(Uri.parse(
+        'https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${consts.apiKey()}'))
+        .then((value) => deserializeNextFiveDaysJson(value));
   }
 }

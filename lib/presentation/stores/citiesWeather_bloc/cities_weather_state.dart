@@ -13,7 +13,7 @@ class CurrentCitiesWeatherInitialState extends CitiesWeatherState {
 }
 
 class CitiesWeatherSuccessState extends CitiesWeatherState {
-  late final List<ResponseWeather> citiesResponseWeather;
+  //late final List<ResponseWeather> citiesResponseWeather;
   CitiesWeatherSuccessState(
       {required List<ResponseWeather> citiesResponseWeather})
       : super(citiesWeatherState: citiesResponseWeather);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weather/data/datasources/cities.dart';
-import 'package:weather/presentation/widgets/card_current_weather.dart';
 import 'package:weather/presentation/widgets/list_tile_city_list.dart';
 
 import '../widgets/card_current_location_weather.dart';

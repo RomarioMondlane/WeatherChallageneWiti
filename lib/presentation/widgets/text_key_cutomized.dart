@@ -14,6 +14,6 @@ class TextKeyCustomizedState extends State<TextKeyCustomized> {
   Widget build(BuildContext context) {
     return Text(widget.text,
         style: TextStyle(
-            fontFamily: 'Poppins', fontSize: 10, fontWeight: FontWeight.bold));
+            fontFamily: 'Poppins', fontSize: 8, fontWeight: FontWeight.bold));
   }
 }

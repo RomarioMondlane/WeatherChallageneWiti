@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:weather/data/models/response.dart';
 import 'package:weather/presentation/widgets/text_key_cutomized.dart';
-
+import 'dart:math' as math;
+import 'next_five_days_carousel.dart';
 import 'text_value_customized.dart';
 
-class CurrentLocationWeather extends StatefulWidget {
+class CurrentWeather extends StatefulWidget {
   final ResponseWeather responseWeather;
-  const CurrentLocationWeather({Key? key, required this.responseWeather})
+  const CurrentWeather({Key? key, required this.responseWeather})
       : super(key: key);
 
   @override
-  State<CurrentLocationWeather> createState() =>
+  State<CurrentWeather> createState() =>
       CurrentLocationWeatherCardState();
 }
 
-class CurrentLocationWeatherCardState extends State<CurrentLocationWeather> {
+class CurrentLocationWeatherCardState extends State<CurrentWeather> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -34,8 +35,12 @@ class CurrentLocationWeatherCardState extends State<CurrentLocationWeather> {
                       fontWeight: FontWeight.bold)),
             ),
             Expanded(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+                child:Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child:
+                 Column(
+
+                  mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -67,21 +72,66 @@ class CurrentLocationWeatherCardState extends State<CurrentLocationWeather> {
                   ],
                 )
               ],
-            )),
+            ))),
             Expanded(
-                child: Column(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 14.0),
+                  child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.responseWeather.name,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold)),
+                  Center(
+                    child: Text(widget.responseWeather.name,
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold)),
+                  ),
+                  Center(
+                    child: Transform.rotate(
+                      angle: 270 * math.pi / 180,
+                      child:
+                      InkWell(
+                        onTap: () {_modalBottomSheetMenu(widget.responseWeather);},
+                        child: Icon(Icons.arrow_back_ios_new),
+                      ),
+                    ),
+                  ),
               ],
-            )),
+            ),
+                )),
           ],
         )),
         height: 100);
+
   }
+  void _modalBottomSheetMenu(ResponseWeather responseWeather){
+    showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder( // <-- SEE HERE
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(35.0),
+          ),
+        ),
+        builder: (builder){
+          return Column(
+            children: [
+          Center(
+
+            child: ListTile(
+            title: Text(widget.responseWeather.name,style: TextStyle(
+                fontFamily: 'Poppins', fontSize: 24, fontWeight: FontWeight.w800),textAlign: TextAlign.center),
+            )
+          ),
+
+              Padding(
+                padding: EdgeInsets.only(top: 0),
+
+                child:  NextFiveDaysCarousel(responseWeather: responseWeather,)),
+            ],
+          );
+        }
+    );
+  }
+
 }

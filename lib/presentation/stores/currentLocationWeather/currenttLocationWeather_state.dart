@@ -28,7 +28,6 @@ class CurrentLocationWeatherInitialState extends CurrentLocationWeatherState {
 }
 
 class CurrentLocationWeatherSuccessState extends CurrentLocationWeatherState {
-  late final ResponseWeather responseWeather;
   CurrentLocationWeatherSuccessState({required ResponseWeather responseWeather})
       : super(currentWeatherState: responseWeather);
 }

@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather/presentation/stores/currentLocationWeather/currentLocationWeather_bloc.dart';
 import 'package:weather/presentation/stores/currentLocationWeather/currenttLocationWeather_event.dart';
 import 'package:weather/presentation/stores/currentLocationWeather/currenttLocationWeather_state.dart';
-import 'package:weather/presentation/widgets/card_current_weather.dart';
+
 
 import '../stores/citiesWeather_bloc/cities_weather_bloc.dart';
 import '../stores/citiesWeather_bloc/cities_weather_event.dart';
 import '../stores/citiesWeather_bloc/cities_weather_state.dart';
 import '../widgets/card_current_location_weather.dart';
+import '../widgets/weeather_place_holder.dart';
 
 class WeatherList extends StatefulWidget {
   const WeatherList({super.key});
@@ -18,8 +19,7 @@ class WeatherList extends StatefulWidget {
 }
 
 class WeatherListState extends State<WeatherList> {
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
+
   late final CurrentLocationWeatherBloc currentLocationWeatherbloc;
   late final CitiesWeatherBloc citiesWeatherBloc;
 
@@ -33,10 +33,10 @@ class WeatherListState extends State<WeatherList> {
               bloc: currentLocationWeatherbloc,
               builder: (context, state) {
                 if (state is CurrentLocationWeatherSuccessState) {
-                  return CurrentLocationWeather(
+                  return CurrentWeather(
                       responseWeather: state.currentWeatherState);
                 } else {
-                  return Container();
+                  return WeatherPlaceHolder();
                 }
               }),
           height: 100,
@@ -53,7 +53,7 @@ class WeatherListState extends State<WeatherList> {
                       itemCount: state.citiesWeatherState.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          child: CurrentLocationWeather(
+                          child: CurrentWeather(
                               responseWeather: state.citiesWeatherState[index]),
                         );
                       });
@@ -74,4 +74,12 @@ class WeatherListState extends State<WeatherList> {
     citiesWeatherBloc = CitiesWeatherBloc();
     citiesWeatherBloc.add(isGettingCitiesWeatherEvent());
   }
+
+  @override
+  void dispose() {
+    currentLocationWeatherbloc .close();
+    citiesWeatherBloc.close();
+    super.dispose();
+  }
+
 }

@@ -12,8 +12,8 @@ class TextValueCustomized extends StatefulWidget {
 class TextValueCustomizedState extends State<TextValueCustomized> {
   @override
   Widget build(BuildContext context) {
-    return Text(widget.value,
+    return Text(" "+widget.value,
         style: TextStyle(
-            fontFamily: 'Poppins', fontSize: 14, fontWeight: FontWeight.bold));
+            fontFamily: 'Poppins', fontSize: 10, fontWeight: FontWeight.bold));
   }
 }
