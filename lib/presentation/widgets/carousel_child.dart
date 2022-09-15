@@ -43,7 +43,12 @@ class CarouselChildState extends State<CarouselChild> {
             );
 
           }else{
-            return Container();
+            return Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                 color: Colors.amber,
+              ),
+            );
           }
             }
           ),

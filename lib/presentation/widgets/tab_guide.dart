@@ -40,9 +40,9 @@ class TabGuideState extends State<TabGuide> {
         tabs: [
         TextValueCustomized(value:  widget.nextFiveDaysWeather[0].dt_txt.substring(11,16)),
 
-          TextKeyCustomized(text: "15:48"),
+          TextValueCustomized(value:  widget.nextFiveDaysWeather[1].dt_txt.substring(11,16)),
 
-          TextKeyCustomized(text: "18:48")
+          TextValueCustomized(value:  widget.nextFiveDaysWeather[2].dt_txt.substring(11,16)),
     ],
     ),
     ),
@@ -51,8 +51,10 @@ class TabGuideState extends State<TabGuide> {
 
     TabBarViewWeather(nextFiveDaysWeather: widget.nextFiveDaysWeather[0]),
 
-      Text("2"),
-      Text("3")
+      TabBarViewWeather(nextFiveDaysWeather: widget.nextFiveDaysWeather[1]),
+
+      TabBarViewWeather(nextFiveDaysWeather: widget.nextFiveDaysWeather[2]),
+
     ],
     ),
     ));

@@ -36,7 +36,12 @@ class WeatherListState extends State<WeatherList> {
                   return CurrentWeather(
                       responseWeather: state.currentWeatherState);
                 } else {
-                  return WeatherPlaceHolder();
+                  return Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: Colors.amber,
+                    ),
+                  );
                 }
               }),
           height: 100,
@@ -58,7 +63,12 @@ class WeatherListState extends State<WeatherList> {
                         );
                       });
                 } else {
-                  return Container();
+                  return Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: Colors.amber,
+                    ),
+                  );
                 }
               }),
         ),

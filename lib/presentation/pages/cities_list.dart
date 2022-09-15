@@ -24,10 +24,19 @@ class CitiesListState extends State<CitiesList> {
               padding: const EdgeInsets.all(12),
               itemCount: cityList.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  child: ListTileCity(
-                      cityname: cityList[index].name,
-                      countryUnit: cityList[index].countryCode),
+                return Column(
+                  children: [
+                    Container(
+                      child: ListTileCity(
+                          cityname: cityList[index].name,
+                          countryUnit: cityList[index].countryCode),
+
+                    ),
+                    Divider(
+                      height: 2,
+                    )
+                  ],
+
                 );
               }),
         ),

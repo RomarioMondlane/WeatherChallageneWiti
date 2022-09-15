@@ -20,8 +20,10 @@ class NextFiveDaysCarouselState extends State<NextFiveDaysCarousel> {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-      options: CarouselOptions(autoPlay: false),
-      items: [1,2,3,4,5].map((i) {
+      options: CarouselOptions(autoPlay: false,
+        viewportFraction: 1,
+      ),
+      items: [1].map((i) {
         return Builder(
           builder: (BuildContext context) {
             return Container(

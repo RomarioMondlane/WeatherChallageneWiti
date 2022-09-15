@@ -20,6 +20,7 @@ class CurrentLocationWeatherCardState extends State<CurrentWeather> {
   Widget build(BuildContext context) {
     return SizedBox(
         child: Card(
+          elevation: 0,
             child: Row(
           children: <Widget>[
             Expanded(
@@ -93,7 +94,7 @@ class CurrentLocationWeatherCardState extends State<CurrentWeather> {
                       child:
                       InkWell(
                         onTap: () {_modalBottomSheetMenu(widget.responseWeather);},
-                        child: Icon(Icons.arrow_back_ios_new),
+                        child: Icon(Icons.arrow_back_ios_new,size: 20),
                       ),
                     ),
                   ),
